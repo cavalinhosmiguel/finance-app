@@ -1,0 +1,173 @@
+/* ---------- Basics ---------- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0a0e1a;
+  --surface: #151a2b;
+  --surface-2: #1f2540;
+  --text: #e8ecf5;
+  --text-dim: #8a92a8;
+  --accent: #4f8cff;
+  --green: #2ecc71;
+  --red: #e74c3c;
+  --border: #252b44;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  /* Pad bottom so content isn't hidden behind the tab bar */
+  padding-bottom: calc(70px + env(safe-area-inset-bottom));
+  padding-top: env(safe-area-inset-top);
+}
+
+/* ---------- Header ---------- */
+.app-header {
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  z-index: 10;
+}
+.app-header h1 { font-size: 24px; font-weight: 700; }
+#refresh-btn {
+  background: transparent;
+  color: var(--text);
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: 8px;
+}
+#refresh-btn:active { background: var(--surface); }
+
+/* ---------- Main / Tabs ---------- */
+main { padding: 16px; max-width: 720px; margin: 0 auto; }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* ---------- List items (news, stocks) ---------- */
+.list { display: flex; flex-direction: column; gap: 10px; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+.news-item { display: block; color: var(--text); text-decoration: none; }
+.news-item h3 { font-size: 15px; margin-bottom: 6px; line-height: 1.35; }
+.news-item .meta { font-size: 12px; color: var(--text-dim); }
+
+.quote-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.quote-symbol { font-weight: 700; font-size: 16px; }
+.quote-name { font-size: 12px; color: var(--text-dim); }
+.quote-price { font-size: 18px; font-weight: 600; text-align: right; }
+.quote-change { font-size: 13px; text-align: right; }
+.up { color: var(--green); }
+.down { color: var(--red); }
+
+.remove-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  font-size: 18px;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+.empty-state {
+  color: var(--text-dim);
+  text-align: center;
+  padding: 30px 10px;
+}
+
+/* ---------- Inputs / buttons ---------- */
+.add-row { display: flex; gap: 8px; margin-bottom: 14px; }
+input[type="text"] {
+  flex: 1;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 15px;
+}
+input[type="text"]:focus { outline: 2px solid var(--accent); }
+
+button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+button:active { opacity: 0.85; }
+
+/* ---------- Settings ---------- */
+.setting-row { margin-bottom: 16px; }
+.setting-row label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.setting-row input { width: 100%; }
+.hint { font-size: 13px; color: var(--text-dim); margin-top: 6px; }
+.hint a { color: var(--accent); }
+
+/* ---------- Bottom Tab Bar (mobile-first) ---------- */
+.tab-bar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  display: flex;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding-bottom: env(safe-area-inset-bottom);
+  z-index: 20;
+}
+.tab-button {
+  flex: 1;
+  background: transparent;
+  color: var(--text-dim);
+  border: none;
+  padding: 10px 0 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-weight: 500;
+  font-size: 12px;
+}
+.tab-button .tab-icon { font-size: 20px; }
+.tab-button.active { color: var(--accent); }
+
+/* ---------- Desktop tweaks ---------- */
+@media (min-width: 768px) {
+  body { padding-bottom: 0; padding-top: 0; }
+  .tab-bar {
+    position: sticky;
+    top: 0;
+    bottom: auto;
+    border-top: none;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .app-header { display: none; }
+  main { padding-top: 24px; }
+}

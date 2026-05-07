@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>My Finance</title>
+
+  <!-- These three lines make iPhone treat it like a real app when added to home screen -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Finance">
+  <link rel="apple-touch-icon" href="icon.svg">
+
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0a0e1a">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <h1 id="page-title">News</h1>
+    <button id="refresh-btn" title="Refresh">↻</button>
+  </header>
+
+  <main>
+    <section id="tab-news" class="tab-content active">
+      <div id="news-list" class="list">
+        <p class="empty-state">Loading news…</p>
+      </div>
+    </section>
+
+    <section id="tab-market" class="tab-content">
+      <div id="market-list" class="list">
+        <p class="empty-state">Loading market…</p>
+      </div>
+    </section>
+
+    <section id="tab-watchlist" class="tab-content">
+      <div class="add-row">
+        <input type="text" id="watchlist-input" placeholder="Add ticker (e.g. AAPL)" autocapitalize="characters" autocorrect="off">
+        <button id="watchlist-add">Add</button>
+      </div>
+      <div id="watchlist-list" class="list">
+        <p class="empty-state">Your watchlist is empty.</p>
+      </div>
+    </section>
+
+    <section id="tab-settings" class="tab-content">
+      <div class="setting-row">
+        <label for="api-key">Finnhub API Key</label>
+        <input type="text" id="api-key" placeholder="Paste your free key">
+        <p class="hint">Get a free key at <a href="https://finnhub.io" target="_blank">finnhub.io</a></p>
+      </div>
+      <button id="save-settings">Save</button>
+      <p id="settings-status" class="hint"></p>
+    </section>
+  </main>
+
+  <nav class="tab-bar">
+    <button class="tab-button active" data-tab="news">
+      <span class="tab-icon">📰</span>
+      <span class="tab-label">News</span>
+    </button>
+    <button class="tab-button" data-tab="market">
+      <span class="tab-icon">📈</span>
+      <span class="tab-label">Market</span>
+    </button>
+    <button class="tab-button" data-tab="watchlist">
+      <span class="tab-icon">⭐</span>
+      <span class="tab-label">Watchlist</span>
+    </button>
+    <button class="tab-button" data-tab="settings">
+      <span class="tab-icon">⚙️</span>
+      <span class="tab-label">Settings</span>
+    </button>
+  </nav>
+
+  <script src="app.js"></script>
+</body>
+</html>
